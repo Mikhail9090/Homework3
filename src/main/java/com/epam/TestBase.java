@@ -11,6 +11,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,12 +24,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class TestBase {
     private WebDriver driver;
-    private String testHost;
+    private String testHost = "https://jdi-framework.github.io/tests/";
 
-    public WebDriver initDriver(String driver,String testHost) {
-        this.driver = setDriver(driver);
+
+    public WebDriver initDriver(String browser) {
+        this.driver = setDriver(browser);
         this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        this.testHost = testHost;
         return this.driver;
     }
 
@@ -39,7 +41,7 @@ public class TestBase {
             options.addArguments("--kiosk");
             setDriver = new ChromeDriver(options);
         }
-        if (driver.equals("firefox")) {
+        if (driver.equals("firefox") || driver.equals("")) {
             System.setProperty("webdriver.gecko.driver", "C:\\GeckoDriver\\geckodriver.exe");
             setDriver = new FirefoxDriver();
         }

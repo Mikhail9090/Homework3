@@ -10,7 +10,7 @@ import static org.openqa.selenium.support.PageFactory.initElements;
  */
 public class LoginPanel{
     static LoginPanel obj;
-    public static LoginPanel getLoginPanel(WebDriver driver) {
+    public static LoginPanel get(WebDriver driver) {
         if(obj != null)
             return obj;
         obj = new LoginPanel();

@@ -11,13 +11,12 @@ import java.lang.reflect.Method;
  */
 public class LoginTests extends TestBase{
     WebDriver driver;
-    private String testHost = "https://jdi-framework.github.io/tests/";
     private static String screenPath = "screenshots\\Login Tests\\";
 
+    @Parameters({"browser"})
     @BeforeSuite
-    public void setupLoginTests() {
-        //System.getProperty("browser", "firefox");
-        driver = initDriver("chrome", testHost);
+    public void setupLoginTests(String browser) {
+        driver = initDriver(browser);
         navigateToMainPage();
     }
 
@@ -38,8 +37,8 @@ public class LoginTests extends TestBase{
 
     @Test(dataProvider = "correctData", dataProviderClass = DataProviders.class)
     public void positiveLogin(String login, String password) {
-        MainPage mainPage = MainPage.getMainPage(driver);
-        LoginPanel loginPanel = LoginPanel.getLoginPanel(driver);
+        MainPage mainPage = MainPage.get(driver);
+        LoginPanel loginPanel = LoginPanel.get(driver);
         mainPage.loginDropDown.click();
         assertTrue(loginPanel.loginLabel.isDisplayed());
         typeTextIn(login,loginPanel.loginField);
@@ -51,8 +50,8 @@ public class LoginTests extends TestBase{
     }
     @Test(dataProvider = "incorrectDataCsv", dataProviderClass = DataProviders.class)
     public void negativeLogin(String login, String password) {
-        MainPage mainPage = MainPage.getMainPage(driver);
-        LoginPanel loginPanel = LoginPanel.getLoginPanel(driver);
+        MainPage mainPage = MainPage.get(driver);
+        LoginPanel loginPanel = LoginPanel.get(driver);
         waitElement(mainPage.loginDropDown);
         mainPage.loginDropDown.click();
         assertTrue(loginPanel.loginLabel.isDisplayed());
@@ -62,11 +61,11 @@ public class LoginTests extends TestBase{
         assertTrue(loginPanel.failedLoginLabel.isDisplayed());
         assertTrue(loginPanel.loginField.isDisplayed());
         assertTrue(loginPanel.passwordField.isDisplayed());
-        assertTrue(loginPanel.userNameLabel.isDisplayed());
+        assertFalse(loginPanel.userNameLabel.isDisplayed());
         loginPanel.loginField.clear();
         loginPanel.passwordField.clear();
         mainPage.loginDropDown.click();
-        assertTrue(loginPanel.loginField.isDisplayed());
-        assertTrue(loginPanel.passwordField.isDisplayed());
+        assertFalse(loginPanel.loginField.isDisplayed());
+        assertFalse(loginPanel.passwordField.isDisplayed());
     }
 }

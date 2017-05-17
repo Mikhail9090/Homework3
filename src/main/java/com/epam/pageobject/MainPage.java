@@ -12,7 +12,7 @@ import static org.openqa.selenium.support.PageFactory.initElements;
  */
 public class MainPage{
     static MainPage obj;
-    public static MainPage getMainPage(WebDriver driver) {
+    public static MainPage get(WebDriver driver) {
         if(obj != null)
             return obj;
         obj = new MainPage();
