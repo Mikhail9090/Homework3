@@ -26,26 +26,19 @@ public class TestBase {
     private WebDriver driver;
     private String testHost = "https://jdi-framework.github.io/tests/";
 
-    @Parameters("browser")
-    public WebDriver initDriver(String browser) {
-        this.driver = setDriver(browser);
-        this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        return this.driver;
-    }
-    @Parameters("browser")
-    public WebDriver setDriver(String driver) {
-        WebDriver setDriver = null;
-        if(driver.equals("chrome")) {
+    public WebDriver setDriver(String browser) {
+        if(browser.equals("Chrome")) {
             System.setProperty("webdriver.chrome.driver", "C:\\ChromeDriver\\chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--kiosk");
-            setDriver = new ChromeDriver(options);
+            driver = new ChromeDriver(options);
         }
-        if (driver.equals("firefox") || driver.equals("")) {
+        if (browser.equals("firefox") || driver.equals("")) {
             System.setProperty("webdriver.gecko.driver", "C:\\GeckoDriver\\geckodriver.exe");
-            setDriver = new FirefoxDriver();
+            driver = new FirefoxDriver();
         }
-        return setDriver;
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        return driver;
     }
 
     public void navigateToMainPage() {

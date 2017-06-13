@@ -12,11 +12,10 @@ import java.lang.reflect.Method;
 public class LoginTests extends TestBase{
     WebDriver driver;
     private static String screenPath = "screenshots\\Login Tests\\";
-
     @Parameters("browser")
     @BeforeSuite
-    public void setupLoginTests(@Optional String browser) {
-        driver = initDriver(browser);
+    public void setupLoginTests(String browser) {
+        driver = setDriver(browser);
         navigateToMainPage();
     }
 
