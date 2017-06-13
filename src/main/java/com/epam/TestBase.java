@@ -26,13 +26,13 @@ public class TestBase {
     private WebDriver driver;
     private String testHost = "https://jdi-framework.github.io/tests/";
 
-
+    @Parameters("browser")
     public WebDriver initDriver(String browser) {
         this.driver = setDriver(browser);
         this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         return this.driver;
     }
-
+    @Parameters("browser")
     public WebDriver setDriver(String driver) {
         WebDriver setDriver = null;
         if(driver.equals("chrome")) {
