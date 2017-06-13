@@ -13,7 +13,7 @@ public class LoginTests extends TestBase{
     WebDriver driver;
     private static String screenPath = "screenshots\\Login Tests\\";
 
-    @Parameters({"browser"})
+    @Parameters("browser")
     @BeforeSuite
     public void setupLoginTests(String browser) {
         driver = initDriver(browser);
