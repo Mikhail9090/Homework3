@@ -15,7 +15,7 @@ public class LoginTests extends TestBase{
 
     @Parameters("browser")
     @BeforeSuite
-    public void setupLoginTests(String browser) {
+    public void setupLoginTests(@Optional String browser) {
         driver = initDriver(browser);
         navigateToMainPage();
     }
