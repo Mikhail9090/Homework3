@@ -5,7 +5,6 @@
         <listener class-name="com.epam.CustomLogReport" />
     </listeners>
 
-
     <test name="Test" >
 
         <classes>
