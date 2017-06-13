@@ -5,7 +5,7 @@
         <listener class-name="com.epam.CustomLogReport" />
     </listeners>
 
-    <parameter name="browser" value="firefox"/>
+
     <test name="Test" >
 
         <classes>
