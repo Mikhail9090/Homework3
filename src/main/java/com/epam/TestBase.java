@@ -42,6 +42,7 @@ public class TestBase {
     }
 
     public void navigateToMainPage() {
+        driver.manage().window().maximize();
         driver.navigate().to(testHost);
     }
 
