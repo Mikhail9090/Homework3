@@ -27,7 +27,7 @@ public class TestBase {
     private String testHost = "https://jdi-framework.github.io/tests/";
 
     public WebDriver setDriver(String browser) {
-        if(browser.equals("Chrome")) {
+        if(browser.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", "C:\\ChromeDriver\\chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--kiosk");
