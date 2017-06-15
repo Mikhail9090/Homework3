@@ -21,10 +21,8 @@ public class LoginTests extends TestBase{
     @Parameters("browser")
     @Step("we're executing our driver and opening the main page")
     @BeforeSuite
-    public void setupLoginTests(String browser) {
+    public void setupLoginTests(@Optional String browser) {
         driver = setDriver(browser);
-        System.out.println(driver.getCurrentUrl());
-        System.out.println(driver.getPageSource());
         navigateToMainPage();
     }
     @Step("we're closing the instance")
@@ -48,6 +46,7 @@ public class LoginTests extends TestBase{
     @Features("Login functionality")
     @Test(dataProvider = "correctData", dataProviderClass = DataProviders.class)
     public void positiveLogin(String login, String password) {
+        System.out.println(System.getProperty("webdriver.chrome.driver"));
         MainPage mainPage = MainPage.get(driver);
         LoginPanel loginPanel = LoginPanel.get(driver);
         mainPage.loginDropDown.click();
@@ -65,6 +64,7 @@ public class LoginTests extends TestBase{
     @Features("Login functionality")
     @Test(dataProvider = "incorrectDataCsv", dataProviderClass = DataProviders.class)
     public void negativeLogin(String login, String password) {
+        System.out.println(System.getProperty("webdriver.chrome.driver"));
         MainPage mainPage = MainPage.get(driver);
         LoginPanel loginPanel = LoginPanel.get(driver);
         waitElement(mainPage.loginDropDown);
