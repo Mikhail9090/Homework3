@@ -19,25 +19,11 @@ public class DataProviders {
 
     @DataProvider
     public Object[][] incorrectDataCsv()  {
-        Object incorrectData[][] = null;
-        try {
-            int i = 0;
-            int j = 0;
-            String testLine = "";
-            BufferedReader file = new BufferedReader(new FileReader(csvFile));
-            while ((file.readLine()) !=null)
-                j++;
-            incorrectData = new Object[j][2];
-            file = new BufferedReader(new FileReader(csvFile));
-            while ((testLine = file.readLine()) !=null) {
-                String[] row = testLine.split(",");
-                incorrectData[i][0] = row[0];
-                incorrectData[i][1] = row[1];
-                i++;
-            }
-        } catch (IOException ex) {
-            System.out.println("File is not found");
-        }
-        return incorrectData;
+        return new Object[][]{
+                {"Epam", "1234"},
+                {"epam","12345"},
+                {"epam",""},
+                {"","12345"}
+        };
     }
 }
